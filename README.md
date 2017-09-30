@@ -4,4 +4,6 @@ Blog system based on node + express + mongo + jquery development, development cy
 ### 2.Installation method
 ##### Open database
 Enter the bin folder of your database installation path, and enter mongod. Exe --dbpath= 'storage path' --port=27018 (database port number using 27018)
+##### Start the database graphical client
+The mongodb graphics chemical has a lot. I use robo 3T, and then I open the shortcut key CRTL +n to connect to the database.
   
