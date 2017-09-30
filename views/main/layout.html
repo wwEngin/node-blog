@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>博客</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/fontAwesome/font-awesome.min.css" />
+    <script src="/public/javascript/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/javascript/index.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <header>
+        <div class="backimg">
+            <img src="../../public/images/header_bg.jpg">
+        </div>
+    </header>
+    <!--博客导航  -->
+    <div class="blog-nav">
+        <ul>
+            {% if category == '' %}
+            <li class="active">首页</li>
+            {% else %}
+            <li><a href="/">首页</a></li>
+            {% endif %} {% for cate in categories %} {% if category == cate.id %}
+            <li class="active"><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+            {% else %}
+            <li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+            {% endif %} {% endfor %}
+        </ul>
+    </div>
+    <!--博客内容  -->
+    <div class="blog-content clearfix">
+        <div class="blog-content-left clearfix">
+            {%block content%} {% endblock%}
+        </div>
+        <div class="blog-content-right">
+
+            {% if userInfo._id %}
+            <div id="user-info" class="user-action">
+                <h4>
+                    <span>用户信息</span>
+                </h4>
+                <span class="username">{{userInfo.username}}</span> {% if userInfo.isAdmin %}
+                <p class="info">你好，管理员！
+                    <a href="/admin">进入管理</a>
+                </p>
+                {% else %}
+                <p class="info">你好，欢迎你光临我的博客！</p>
+                {%endif %}
+                <a href="javascript:;" class="logoutBtn">退出</a>
+            </div>
+            {% else %}
+            <div id="login" class="user-action">
+                <h4><span>用户登陆</span></h4>
+                <ul class="form-ul login-ul">
+                    <li>
+                        <label>用户名:</label>
+                        <input type="text" name="username" placeholder="输入用户名">
+                    </li>
+                    <li>
+                        <label>密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+                        <input type="password" name="password" placeholder="输入密码">
+                    </li>
+                    <li>
+                        还没有注册？<a href="javascript:;">点击注册</a>
+                    </li>
+                    <li>
+                        <button>登陆</button>
+                    </li>
+                    <p class="login-message"></p>
+                </ul>
+            </div>
+
+            <div id="registerBox" class="user-action hidden" style="display:none;">
+                <h4><span>用户注册</span></h4>
+                <ul class="form-ul login-ul">
+                    <li>
+                        <label>用户名:</label>
+                        <input type="text" name="username" placeholder="输入用户名">
+                    </li>
+                    <li>
+                        <label>密码:</label>
+                        <input type="password" name="password" placeholder="输入密码">
+                    </li>
+                    <li>
+                        <label>确认密码:</label>
+                        <input type="password" name="repassword" placeholder="确认密码">
+                    </li>
+                    <li>
+                        已经注册？<a href="javascript:;">点击登陆</a>
+                    </li>
+                    <li>
+                        <button>注册</button>
+                    </li>
+                    <p class="register-message"></p>
+                </ul>
+            </div>
+            {% endif %}
+            <div class="user-action">
+                <h4><span>社区</span></h4>
+                <ul class="shequ">
+                    <li><a href="#">知乎</a></li>
+                    <li><a href="#">CSDN</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</body>
+
+</html>

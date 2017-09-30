@@ -1,0 +1,48 @@
+{%extends 'layout.html'%} {%block content%}
+<div class="blog-item-desc">
+    <div class="blog-item">
+        <h2>{{content.title}}</h2>
+        <p class="colDefault">
+            作者：<span class="colInfo">{{content.user.username}}</span> 时间：
+            <span class="colInfo">{{content.addTime|date('Y-m-d H:i:s',-8 * 60)}}</span> 阅读：
+            <span class="colInfo">{{content.views}}</span> 评论：
+            <span class="colInfo">10</span>
+        </p>
+        <div class="blog_content">
+            {{content.content}}
+        </div>
+    </div>
+</div>
+<div class="comment">
+    <h3 class="name">评论</h3>
+    <div class="comment-header clearfix">
+        <span class="comment-total">一共有<span class="messageCount"></span>条评论</span>
+    </div>
+    {% if userInfo._id %}
+    <div>
+        <div class="input-group">
+            <textarea rows="4" cols="90%" id="messageContent" placeholder="输入评论内容"></textarea>
+            <input type="hidden" id="contentId" value="{{content.id}}">
+            <button class="submit btn btn-default" id="messageBtn">评论</button>
+        </div>
+    </div>
+    {% else %}
+    <div class="login-msg">
+        <span>你还没登陆，请先登录</span>
+    </div>
+    {% endif %}
+    <div class="messageList">
+    </div>
+    <ul class="content-page clearfix comment-page">
+        <li class="prev">
+            <a href="javascript:;">上一页</a>
+        </li>
+        <li class="next">
+            <a href="javascript:;">下一页</a>
+        </li>
+        <li class="cur-page"><span></span>/<span></span></li>
+    </ul>
+</div>
+<script src="/public/javascript/comment.js" type="text/javascript" charset="utf-8"></script>
+
+{%endblock%}
