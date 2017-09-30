@@ -6,4 +6,5 @@ Blog system based on node + express + mongo + jquery development, development cy
 Enter the bin folder of your database installation path, and enter mongod. Exe --dbpath= 'storage path' --port=27018 (database port number using 27018)
 ##### Start the database graphical client
 The mongodb graphics chemical has a lot. I use robo 3T, and then I open the shortcut key CRTL +n to connect to the database.
-  
+##### compile
+The compiler I use visual studio code, and then I'm calling on CTRL +~ to enter node./ app.js, if the console prints' database connection success ', it runs successfully.
